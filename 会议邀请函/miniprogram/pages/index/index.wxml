@@ -1,0 +1,68 @@
+<view class="body">
+  <view class="box">
+    <view class="title">
+      <text>会议主题</text>
+    </view>
+    <view class="content" bindtap="themeSet">
+      <input placeholder="请在此输入主题：" bindinput="themeInput"></input>   
+    </view>
+  </view>
+  <view class="box">
+    <view class="title">
+      <text>活动内容</text>
+    </view>
+    <view class="content">
+      <view class="bar">
+        <image src="/img/add.png" mode="aspectFill" bindtap="chooseActivity" wx:if="{{activityPhoto.length<1}}"></image>
+        <image class="image" mode="aspectFill" src="{{activityPhoto}}"
+           wx:if="{{activityPhoto.length>0}}"
+          bindtap="previewingAct" bindlongpress="removingAct" data-url="{{item}}"></image>
+        <input  placeholder="请在此输入活动内容：" bindinput="contentInput"></input> 
+      </view>   
+    </view>
+  </view>
+  <view class="box">
+    <view class="title">
+      <text>本次嘉宾</text>
+    </view>
+
+    <view class="content">
+      <image src="/img/add.png" mode="aspectFill" bindtap="chooseGuest" style="width:50px;height:50px" wx:if="{{guestPhotos.length<3}}"></image>
+      <block wx:for="{{guestPhotos}}">
+      <view class="guest" wx:if="{{guestPhoto.length>=1}}"  wx:key="{{index}}">
+        <view class="guest-img" >
+          <image class="image" mode="aspectFill"  src="{{item}}"
+          bindtap="previewingGuest" style="margin-top: 10px;" bindlongpress="removingGuest" data-url="{{item}}"></image>
+        </view>
+        <view class="guest-info">
+         <input data-id="{{index}}" placeholder="请输入本次嘉宾的简介：" bindinput="guestInput"> </input>
+        </view>
+      </view>
+      </block>
+    </view>  
+  </view>  
+
+  <view class="box">
+    <view class="title">
+      <text>地图导航</text>
+    </view>
+    <view class="content">
+      <input bindinput="siteInput" placeholder="活动地点："></input>    
+        
+        <map id="map" longitude="{{markers.longitude}}" latitude="{{markers.latitude}}" scale="14" 
+        markers="{{markers}}" style="width:100%;height:400rpx" controls="{{controls}}" bindcontroltap="controltap" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location></map>
+      
+      <view class='list-guide'> 
+        <view bindtap="selectedClick" data-latitude='43.832090' data-longitude='87.593313' data-bankName='新疆师范大学'>
+        <image src='/img/导航.png' class='list-guide-imgae'></image>
+        <text class='list-guide-text'>选择地点</text>
+        </view>
+        <view bindtap='done' data-bankId="{{item.BANK_ID}}">
+        <image src='/img/详情.png' class='list-guide-imgae'></image>
+        <text class='list-guide-text'>生成邀请函</text>
+        </view>       
+      </view>
+    </view>  
+  </view>
+
+</view>

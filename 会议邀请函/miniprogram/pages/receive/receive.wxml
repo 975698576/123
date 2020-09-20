@@ -1,0 +1,66 @@
+<view class="body">
+  <view class="box">
+    <view class="title">
+      <text>会议主题</text>
+    </view>
+    <view class="content" bindtap="themeSet">
+      <text>{{theme}}</text>  
+    </view>
+  </view>
+  <view class="box">
+    <view class="title">
+      <text>活动内容</text>
+    </view>
+    <view class="content">
+      <view class="bar">
+        
+        <image class="image" mode="aspectFill" src="{{activityPhoto}}"
+          bindtap="previewingAct" data-url="{{item}}"></image>
+        <text>{{activity}}</text> 
+      </view>   
+    </view>
+  </view>
+  <view class="box">
+    <view class="title">
+      <text>本次嘉宾</text>
+    </view>
+
+    <view class="content">
+      <block wx:for="{{guestPhotos}}">
+      <view class="guest"  wx:key="{{index}}">
+        <view class="guest-img" >
+          <image class="image" mode="aspectFill"  src="{{item}}"
+          bindtap="previewingGuest" style="margin-top: 10px;" data-url="{{item}}"></image>
+        </view>
+        <view class="guest-info" wx:key="{{index}}">
+          <text>{{guest[index].guestinfo}}</text> 
+        </view>
+      </view>
+      </block>
+    </view>  
+  </view>  
+
+  <view class="box">
+    <view class="title">
+      <text>地图导航</text>
+    </view>
+    <view class="content">
+      <text>{{map.site}}</text>    
+        
+        <map id="map" longitude="{{map.longitude}}" latitude="{{map.latitude}}" scale="14" 
+        markers="{{markers}}" style="width:100%;height:400rpx" controls="{{controls}}"  polyline="{{polyline}}"  show-location></map>
+      
+      <view class='list-guide'> 
+        <view bindtap="selectedClick" data-latitude='{{map.latitude}}' data-longitude='{{map.longitude}}' data-bankName='{{map.site}}'>
+        <image src='/../img/导航.png' class='list-guide-imgae'></image>
+        <text class='list-guide-text'>导航</text>
+        </view>
+        <view bindtap='onbankTap' data-bankId="{{item.BANK_ID}}">
+        <image src='/../img/详情.png' class='list-guide-imgae'></image>
+        <text class='list-guide-text'>详情</text>
+        </view>       
+      </view>
+    </view>  
+  </view>
+
+</view>

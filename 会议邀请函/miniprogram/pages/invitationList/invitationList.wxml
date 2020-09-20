@@ -1,0 +1,9 @@
+<view class="list">
+  <view class="item" wx:for="{{items}}" >
+    <view bindtap="todetail" data-item="{{item}}">
+     <view class="item-title">{{item.theme}}</view>
+     <view class="item-content">{{item.activity}}</view>
+    </view>
+  </view>
+</view>
+<button class="add-btn" bindtap="toAdd">新建</button>
